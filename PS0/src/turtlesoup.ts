@@ -8,16 +8,14 @@ import { execSync } from "child_process";
  * @param sideLength The length of each side of the square in pixels.
  */
 export function drawSquare(turtle: Turtle, sideLength: number): void {
-  // TODO: Implement drawSquare
-  // Example (incorrect square, just to show usage):
   turtle.forward(sideLength);
   turtle.turn(90);
   turtle.forward(sideLength);
-  turtle.turn(180);
+  turtle.turn(90);
   turtle.forward(sideLength);
   turtle.turn(90);
   turtle.forward(sideLength);
-  turtle.turn(400);
+  turtle.turn(90);
 }
 
 /**
@@ -42,7 +40,7 @@ export function chordLength(radius: number, angleInDegrees: number): number {
 export function drawApproximateCircle(
   turtle: Turtle,
   radius: number,
-  numSides: number
+  numSides: number,
 ): void {
   // TODO: Implement drawApproximateCircle
 }
@@ -89,7 +87,7 @@ export function drawPersonalArt(turtle: Turtle): void {
 }
 
 function generateHTML(
-  pathData: { start: Point; end: Point; color: Color }[]
+  pathData: { start: Point; end: Point; color: Color }[],
 ): string {
   const canvasWidth = 500;
   const canvasHeight = 500;
@@ -125,7 +123,7 @@ function generateHTML(
 
 function saveHTMLToFile(
   htmlContent: string,
-  filename: string = "output.html"
+  filename: string = "output.html",
 ): void {
   fs.writeFileSync(filename, htmlContent);
   console.log(`Drawing saved to ${filename}`);
