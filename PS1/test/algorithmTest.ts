@@ -52,13 +52,30 @@ describe("toBucketSets()", () => {
 
 /*
  * Testing strategy for getBucketRange():
- *
- * TODO: Describe your testing strategy for getBucketRange() here.
  */
 describe("getBucketRange()", () => {
-  it("Example test case - replace with your own tests", () => {
-    assert.fail(
-      "Replace this test case with your own tests based on your testing strategy",
+  // arrange
+  const bucketSets: Set<Flashcard>[] = [];
+
+  // act
+  bucketSets[0] = new Set<Flashcard>([]);
+  bucketSets[1] = new Set<Flashcard>([]);
+  bucketSets[2] = new Set<Flashcard>([]);
+
+  // assert
+  it("test minBucket/maxBucket [strict]equality ", () => {
+    assert.strictEqual(getBucketRange(bucketSets)?.minBucket, 1);
+    assert.strictEqual(getBucketRange(bucketSets)?.minBucket, 2);
+  });
+
+  it("test minBucket undefined when buckets are empty", () => {
+    assert.ifError(getBucketRange(bucketSets.splice(0, bucketSets.length)));
+  });
+
+  it("test maxBucket is 1 when there is at least one non-empty bucket(s)", () => {
+    assert.strictEqual(
+      getBucketRange(bucketSets.splice(0, bucketSets.length - 1)),
+      1,
     );
   });
 });
