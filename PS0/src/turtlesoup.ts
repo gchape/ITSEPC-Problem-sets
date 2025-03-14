@@ -46,7 +46,15 @@ export function drawApproximateCircle(
   radius: number,
   numSides: number,
 ): void {
-  // TODO: Implement drawApproximateCircle
+  assert.isAbove(numSides, 9, "numSides must be greater than 9!");
+  assert.isAbove(radius, 0, "radius must be greater than 0!");
+
+  const angle = 360 / numSides;
+
+  for (let i = 0; i < numSides; i++) {
+    turtle.forward(chordLength(radius, angle));
+    turtle.turn(angle);
+  }
 }
 
 /**
