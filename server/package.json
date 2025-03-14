@@ -1,14 +1,14 @@
 {
-  "name": "server",
+  "name": "minimal-express-server",
   "version": "1.0.0",
-  "description": "Create a new folder and move into the directory:",
-  "main": "index.js",
+  "description": "Minimal Express TypeScript Server",
+  "main": "app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/app.ts",
+    "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Giorgi Chapidze",
+  "license": "MIT",
   "type": "commonjs",
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "dependencies": {
