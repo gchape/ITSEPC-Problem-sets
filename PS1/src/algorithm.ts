@@ -19,8 +19,12 @@ import { Flashcard, AnswerDifficulty, BucketMap } from "./flashcards";
  * @spec.requires buckets is a valid representation of flashcard buckets.
  */
 export function toBucketSets(buckets: BucketMap): Array<Set<Flashcard>> {
-  // TODO: Implement this function
-  throw new Error("Implement me!");
+  const bucketSets: Array<Set<Flashcard>> = [];
+  buckets.forEach((buckets, i) => {
+    bucketSets[i] = buckets;
+  });
+
+  return bucketSets;
 }
 
 /**
@@ -32,7 +36,7 @@ export function toBucketSets(buckets: BucketMap): Array<Set<Flashcard>> {
  * @spec.requires buckets is a valid Array-of-Set representation of flashcard buckets.
  */
 export function getBucketRange(
-  buckets: Array<Set<Flashcard>>
+  buckets: Array<Set<Flashcard>>,
 ): { minBucket: number; maxBucket: number } | undefined {
   // TODO: Implement this function
   throw new Error("Implement me!");
@@ -49,7 +53,7 @@ export function getBucketRange(
  */
 export function practice(
   buckets: Array<Set<Flashcard>>,
-  day: number
+  day: number,
 ): Set<Flashcard> {
   // TODO: Implement this function
   throw new Error("Implement me!");
@@ -67,7 +71,7 @@ export function practice(
 export function update(
   buckets: BucketMap,
   card: Flashcard,
-  difficulty: AnswerDifficulty
+  difficulty: AnswerDifficulty,
 ): BucketMap {
   // TODO: Implement this function
   throw new Error("Implement me!");
