@@ -8,6 +8,7 @@
  * or you risk failing the autograder.
  */
 
+import { assert } from "chai";
 import { Flashcard, AnswerDifficulty, BucketMap } from "./flashcards";
 
 /**
@@ -81,6 +82,8 @@ export function practice(
   buckets: Array<Set<Flashcard>>,
   day: number,
 ): Set<Flashcard> {
+  assert.isAbove(day, 0, "day must be greater than 0!");
+
   const practiceFlashcards = new Set<Flashcard>();
   for (
     let i = 0, dayth = 2 ** i;
