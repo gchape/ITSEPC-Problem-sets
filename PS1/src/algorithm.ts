@@ -81,8 +81,18 @@ export function practice(
   buckets: Array<Set<Flashcard>>,
   day: number,
 ): Set<Flashcard> {
-  // TODO: Implement this function
-  throw new Error("Implement me!");
+  const practiceFlashcards = new Set<Flashcard>();
+  for (
+    let i = 0, dayth = 2 ** i;
+    dayth <= day && day % dayth == 0;
+    ++i, dayth = 2 ** i
+  ) {
+    buckets[i]?.forEach((fc) => {
+      practiceFlashcards.add(fc);
+    });
+  }
+
+  return practiceFlashcards;
 }
 
 /**
