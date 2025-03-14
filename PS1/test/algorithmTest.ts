@@ -90,10 +90,37 @@ describe("getBucketRange()", () => {
  * TODO: Describe your testing strategy for practice() here.
  */
 describe("practice()", () => {
-  it("Example test case - replace with your own tests", () => {
-    assert.fail(
-      "Replace this test case with your own tests based on your testing strategy",
-    );
+  // arrange
+  const bucketSets: Array<Set<Flashcard>> = new Array<Set<Flashcard>>();
+
+  // act
+  bucketSets.push(
+    new Set<Flashcard>([new Flashcard("SFB", "safe from bugs", "", [])]),
+    new Set<Flashcard>([new Flashcard("ETU", "easy to understand", "", [])]),
+    new Set<Flashcard>([new Flashcard("RFC", "ready for change", "", [])]),
+  );
+
+  const everyDayFlashcards = (day: number) => {
+    const practiceFlashcards = practice(bucketSets, day);
+    let predicate: boolean = true;
+
+    bucketSets[0]?.forEach((fc) => {
+      const has = practiceFlashcards.has(fc);
+
+      if (!has) {
+        predicate = false;
+      }
+    });
+
+    return predicate;
+  };
+
+  it("test `day` less than 1 throws an error", () => {
+    assert.throws(() => practice(bucketSets, 0));
+  });
+
+  it("test `every day` flashcards are present at any day", () => {
+    assert.deepEqual(everyDayFlashcards(2), true);
   });
 });
 
