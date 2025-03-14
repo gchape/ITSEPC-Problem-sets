@@ -1,6 +1,7 @@
 import { Turtle, SimpleTurtle, Point, Color } from "./turtle";
 import * as fs from "fs";
 import { execSync } from "child_process";
+import { assert } from "chai";
 
 /**
  * Draws a square of the given side length using the turtle.
@@ -26,8 +27,11 @@ export function drawSquare(turtle: Turtle, sideLength: number): void {
  * @returns The length of the chord.
  */
 export function chordLength(radius: number, angleInDegrees: number): number {
-  // TODO: Implement chordLength
-  return 0; // Placeholder - replace with your implementation
+  assert.isAbove(radius, 0, "Radius must be greater than 0!");
+
+  const angleInRadians = angleInDegrees * (Math.PI / 180);
+
+  return 2 * radius * Math.sin(angleInRadians / 2);
 }
 
 /**
