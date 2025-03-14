@@ -156,14 +156,24 @@ function generateHTML(
     pathStrings += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${segment.color}" stroke-width="2"/>`;
   }
 
-  return `<!DOCTYPE html>
+  return `
+<!DOCTYPE html>
 <html>
 <head>
     <title>Turtle Graphics Output</title>
-    <style>
-        body { margin: 0; }
-        canvas { display: block; }
-    </style>
+<style>
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh
+}
+
+canvas {
+  display: block;
+}
+</style>
 </head>
 <body>
     <svg width="${canvasWidth}" height="${canvasHeight}" style="background-color:#f0f0f0;">
@@ -225,7 +235,8 @@ export function main(): void {
   // console.log("Path instructions:", pathInstructions);
 
   // Draw personal art
-  // drawPersonalArt(turtle);
+  //
+  drawPersonalArt(turtle);
 
   const htmlContent = generateHTML((turtle as SimpleTurtle).getPath()); // Cast to access getPath
   saveHTMLToFile(htmlContent);
