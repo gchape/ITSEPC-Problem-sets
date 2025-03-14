@@ -28,7 +28,7 @@ describe("toBucketSets()", () => {
   })();
 
   // assert
-  it("bucket positions should be preserved: `bucketMap`.get(key) === `toBucketSets(`buckets`)[key]", () => {
+  it("test bucket positions are preserved: `bucketMap`.get(key) === `toBucketSets(`buckets`)[key]", () => {
     toBucketSets(bucketMap).forEach((b, i) => {
       if (b !== bucketMap.get(i)) {
         throw new AssertionError(
@@ -38,11 +38,11 @@ describe("toBucketSets()", () => {
     });
   });
 
-  it("bucketSets should be [deep[strict]]equal to array-of-buckets", () => {
+  it("test bucketSets [deep[strict]]equality", () => {
     assert.deepStrictEqual(toBucketSets(bucketMap), [buckets]);
   });
 
-  it("empty bucketMap should return empty bucketSets", () => {
+  it("test empty bucketMap -> empty bucketSets", () => {
     assert.deepStrictEqual(
       toBucketSets(new Map<number, Set<Flashcard>>()),
       new Array<Set<Flashcard>>(),
@@ -56,27 +56,31 @@ describe("toBucketSets()", () => {
 describe("getBucketRange()", () => {
   // arrange
   const bucketSets: Set<Flashcard>[] = [];
+  const emptyBucketSets = new Array<Set<Flashcard>>();
 
   // act
-  bucketSets[0] = new Set<Flashcard>([]);
-  bucketSets[1] = new Set<Flashcard>([]);
-  bucketSets[2] = new Set<Flashcard>([]);
+  bucketSets[0] = new Set<Flashcard>([
+    new Flashcard("SFB", "safe from bugs", "", []),
+  ]);
+  bucketSets[1] = new Set<Flashcard>([
+    new Flashcard("ETU", "easy to understand", "", []),
+  ]);
+  bucketSets[2] = new Set<Flashcard>([
+    new Flashcard("RFC", "ready for change", "", []),
+  ]);
 
   // assert
   it("test minBucket/maxBucket [strict]equality ", () => {
-    assert.strictEqual(getBucketRange(bucketSets)?.minBucket, 1);
-    assert.strictEqual(getBucketRange(bucketSets)?.minBucket, 2);
+    assert.strictEqual(getBucketRange(bucketSets)?.minBucket, 0);
+    assert.strictEqual(getBucketRange(bucketSets)?.maxBucket, 2);
   });
 
-  it("test minBucket undefined when buckets are empty", () => {
-    assert.ifError(getBucketRange(bucketSets.splice(0, bucketSets.length)));
+  it("test minBucket -> undefined, when bucketSets is empty", () => {
+    assert.ifError(getBucketRange(emptyBucketSets));
   });
 
-  it("test maxBucket is 1 when there is at least one non-empty bucket(s)", () => {
-    assert.strictEqual(
-      getBucketRange(bucketSets.splice(0, bucketSets.length - 1)),
-      1,
-    );
+  it("test getBucketRange -> undefined, when bucketSets is empty", () => {
+    assert.ifError(getBucketRange(emptyBucketSets));
   });
 });
 
