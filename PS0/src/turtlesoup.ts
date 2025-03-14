@@ -113,11 +113,28 @@ export function findPath(turtle: Turtle, points: Point[]): string[] {
  * @param turtle The turtle to use.
  */
 export function drawPersonalArt(turtle: Turtle): void {
-  // TODO: Implement drawPersonalArt
-  // Example - replace with your own art!
-  for (let i = 0; i < 6; i++) {
-    turtle.forward(50);
-    turtle.turn(60);
+  const colors = [
+    "red",
+    "blue",
+    "green",
+    "yellow",
+    "purple",
+    "orange",
+    "cyan",
+    "magenta",
+  ];
+
+  for (let i = 0; i < 50; i++) {
+    turtle.color(colors[i % colors.length] as Color);
+    turtle.forward(i * 10);
+    turtle.turn(45);
+
+    if (i % 10 === 0) {
+      for (let j = 0; j < 4; j++) {
+        turtle.forward(30);
+        turtle.turn(90);
+      }
+    }
   }
 }
 
